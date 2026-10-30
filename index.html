@@ -31,7 +31,7 @@
     </div>
   </header>
   <div class="nav-wrap"><nav class="container nav" aria-label="اصلي غورنۍ">
-    <button class="active" data-section="home">🏠 کور</button><button data-section="lessons">📚 درسونه او PDF</button><button data-section="announcements">🔔 خبرتیاوې</button><button data-section="schedule">🗓️ مهالوېش</button><button data-section="students">👥 محصلین</button><button class="nav-admin" data-section="admin">⚙️ مدیریت</button>
+    <button class="active" data-section="home">🏠 کور</button><button data-section="lessons">📚 درسونه او PDF</button><button data-section="videos">🎬 ویډیويي درسونه</button><button data-section="announcements">🔔 خبرتیاوې</button><button data-section="schedule">🗓️ مهالوېش</button><button data-section="students">👥 محصلین</button><button class="nav-admin" data-section="admin">⚙️ مدیریت</button>
   </nav></div>
   <main class="container main">
     <section class="section active" id="home">
@@ -51,12 +51,25 @@
       </div>
     </section>
     <section class="section" id="lessons"><div class="section-head"><div><h2>📚 درسونه او PDF کتابونه</h2><p>د مضمونونو نوټونه، کتابونه او ګټور لینکونه</p></div><input id="lesson-search" class="search" placeholder="د درس لټون…" aria-label="د درس لټون"></div><div id="lesson-list" class="list"></div><div id="lesson-empty" class="empty hidden"><div class="empty-icon">📘</div><strong>تر اوسه درسي مواد نشته</strong><span class="small">د مدیریت له برخې څخه لومړی درس یا کتاب اضافه کړه.</span></div></section>
+    <section class="section" id="videos">
+      <div class="section-head"><div><h2>🎬 د شبکو انجینري ویډیويي درسونه</h2><p>د YouTube ویډیوګانې چې دلته خپرې شي، ټولو محصلینو ته ښکاري.</p></div><button class="btn btn-outline btn-small" id="refresh-videos" type="button">↻ تازه کړه</button></div>
+      <div id="video-status" class="notice-box" style="margin-bottom:14px">ویډیويي درسونه بار کېږي…</div>
+      <div id="video-list" class="grid"></div>
+      <div id="video-empty" class="empty hidden"><div class="empty-icon">🎬</div><strong>تر اوسه ویډیويي درس نشته</strong><span class="small">مدیر به وروسته د مدیریت له برخې ویډیو اضافه کړي.</span></div>
+    </section>
     <section class="section" id="announcements"><div class="section-head"><div><h2>🔔 صنفي خبرتیاوې</h2><p>د ازموینو، درسونو او صنفي فعالیتونو خبرونه</p></div></div><div id="notice-list" class="list"></div><div id="notice-empty" class="empty hidden"><div class="empty-icon">📣</div><strong>تر اوسه خبرتیا نشته</strong></div></section>
     <section class="section" id="schedule"><div class="section-head"><div><h2>🗓️ د درسونو مهالوېش</h2><p>ورځ، وخت او مضمون</p></div></div><div id="schedule-list" class="list"></div><div id="schedule-empty" class="empty hidden"><div class="empty-icon">🗓️</div><strong>مهالوېش لا نه دی ثبت شوی</strong></div></section>
     <section class="section" id="students"><div class="section-head"><div><h2>👥 د محصلینو نوملړ</h2><p>د صنف د محصلینو نومونه</p></div><input id="student-search" class="search" placeholder="د نوم لټون…" aria-label="د محصل نوم لټون"></div><div id="student-list" class="list"></div><div id="student-empty" class="empty hidden"><div class="empty-icon">🧑‍🎓</div><strong>نوملړ لا نه دی جوړ شوی</strong><span class="small">نومونه د مدیریت له برخې څخه اضافه کړه.</span></div><p class="muted small">د محصلینو شخصي معلومات، د تلیفون شمېرې او نور حساس معلومات د عامه پاڼې لپاره مه ثبتوه.</p></section>
     <section class="section" id="admin"><div class="section-head"><div><h2>⚙️ د ویبسایټ مدیریت</h2><p>دلته درسونه، خبرتیاوې، مهالوېش او نومونه اداره کړه.</p></div></div>
       <div class="notice-box" style="margin-bottom:16px"><strong>مهم:</strong> دا لومړنۍ نسخه معلومات یوازې د همدې براوزر/موبایل په ذخیره کې ساتي. تر اوسه له نورو محصلینو سره معلومات نه شریکوي او د آنلاین ویبسایټ لپاره خوندي مدیر-حساب نه لري. د ټولو لپاره د ګډو معلوماتو د ښودلو لپاره به وروسته ډیټابېس او د مدیر ننوتلو سیستم ورزیاتوو.</div>
       <div class="grid">
+        <div class="card span-12" id="video-admin-card">
+          <h2 style="font-size:18px;margin-top:0">🎬 د YouTube ویډیو درسونه — آنلاین مدیریت</h2>
+          <p class="muted small">دلته د مدیر په حساب ننوزه. د دې برخې درسونه په آنلاین ډیټابیس کې ساتل کېږي او ټولو محصلینو ته ښکاري.</p>
+          <form id="video-login-form"><div class="form-grid"><div class="field"><label for="video-admin-email">د مدیر ایمېل</label><input id="video-admin-email" type="email" autocomplete="username" required placeholder="ستاسو ایمېل"></div><div class="field"><label for="video-admin-password">پاسورډ</label><input id="video-admin-password" type="password" autocomplete="current-password" required placeholder="د مدیر پاسورډ"></div></div><div class="form-actions"><button class="btn btn-primary" type="submit">مدیر ته ننوتل</button><button class="btn btn-outline hidden" id="video-logout" type="button">وتل</button></div></form>
+          <div id="video-admin-status" class="notice-box" style="margin-top:12px">لومړی باید په Supabase کې د مدیر حساب جوړ او د ډیټابیس امنیتي پالیسۍ تنظیم شي.</div>
+          <form id="video-add-form" class="hidden" style="margin-top:18px"><div class="form-grid"><div class="field"><label for="video-title">د ویډیو درس نوم *</label><input id="video-title" required maxlength="160" placeholder="لکه: د کمپیوټر شبکو پېژندنه"></div><div class="field"><label for="video-url">د YouTube لینک *</label><input id="video-url" type="url" required placeholder="https://www.youtube.com/watch?v=..."></div><div class="field full"><label for="video-description">لنډه تشریح</label><textarea id="video-description" maxlength="1000" placeholder="د درس مهم ټکي"></textarea></div><div class="field full"><label for="video-pdf">د PDF لینک (اختیاري)</label><input id="video-pdf" type="url" placeholder="https://..."></div></div><div class="form-actions"><button class="btn btn-primary" type="submit">ویډیو درس خپور کړه</button></div></form>
+        </div>
         <div class="card span-6"><h2 style="font-size:18px;margin-top:0">➕ نوی درس یا کتاب</h2><form id="lesson-form"><div class="form-grid"><div class="field full"><label for="l-title">د درس یا کتاب نوم *</label><input id="l-title" required maxlength="120" placeholder="لکه: د کمپیوټر شبکو پېژندنه"></div><div class="field full"><label for="l-desc">لنډ تشریح</label><textarea id="l-desc" maxlength="800" placeholder="د دې درس یا کتاب په اړه لنډ معلومات"></textarea></div><div class="field full"><label for="l-url">د PDF یا ویډیو لینک</label><input id="l-url" type="url" placeholder="https://…"><small class="muted">عامه لینک ورکړه، یا وروسته د فایلونو فولډر جوړوو.</small></div></div><div class="form-actions"><button class="btn btn-primary" type="submit">درس اضافه کړه</button></div></form></div>
         <div class="card span-6"><h2 style="font-size:18px;margin-top:0">📣 نوې خبرتیا</h2><form id="notice-form"><div class="form-grid"><div class="field full"><label for="n-title">د خبرتیا سرلیک *</label><input id="n-title" required maxlength="120" placeholder="لکه: د ازموینې خبرتیا"></div><div class="field full"><label for="n-body">د خبرتیا متن *</label><textarea id="n-body" required maxlength="1200" placeholder="د خبرتیا بشپړ معلومات"></textarea></div></div><div class="form-actions"><button class="btn btn-primary" type="submit">خبرتیا خپره کړه</button></div></form></div>
         <div class="card span-6"><h2 style="font-size:18px;margin-top:0">🗓️ مهالوېش ته نوی درس</h2><form id="schedule-form"><div class="form-grid"><div class="field"><label for="s-day">ورځ *</label><select id="s-day" required><option value="شنبه">شنبه</option><option value="یکشنبه">یکشنبه</option><option value="دوشنبه">دوشنبه</option><option value="سه‌شنبه">سه‌شنبه</option><option value="چهارشنبه">چهارشنبه</option><option value="پنجشنبه">پنجشنبه</option><option value="جمعه">جمعه</option></select></div><div class="field"><label for="s-time">وخت</label><input id="s-time" placeholder="لکه: ۸:۰۰ – ۹:۳۰"></div><div class="field full"><label for="s-subject">مضمون *</label><input id="s-subject" required maxlength="120" placeholder="لکه: د کمپیوټر بنسټونه"></div><div class="field full"><label for="s-room">صنف/ځای (اختیاري)</label><input id="s-room" maxlength="100" placeholder="لکه: لابراتوار ۲"></div></div><div class="form-actions"><button class="btn btn-primary" type="submit">مهالوېش ته اضافه کړه</button></div></form></div>
@@ -66,6 +79,7 @@
     </section>
   </main>
   <footer class="footer"><div class="container footer-inner"><div><strong>د شبکو انجینري — د صنف ویبسایټ</strong><br><small>زده کړه · همکاري · پرمختګ</small></div><div><small>چمتو کوونکی: عرفان الله قرار (Irfanullah Qarar)</small><br><small>د زده کړې لپاره لومړنۍ نسخه</small></div></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     (()=>{
       const KEY='networkEngineeringClassWebsite_v1';
@@ -108,5 +122,26 @@
       render();
     })();
   </script>
+
+  <script>
+    (async()=>{
+      const SUPABASE_URL='https://hmzjvxvshwrjcbofbfje.supabase.co';
+      const SUPABASE_PUBLISHABLE_KEY='sb_publishable_KHp_M-GBwZ0Hg1ZGvt5dhg_aKtevmiX';
+      const el=id=>document.getElementById(id);
+      const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+      const status=el('video-status'), adminStatus=el('video-admin-status');
+      const escVideo=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      function youtubeId(raw){try{const u=new URL(raw);if(u.hostname==='youtu.be')return u.pathname.slice(1).split('/')[0];if(u.hostname.endsWith('youtube.com')){if(u.pathname==='/watch')return u.searchParams.get('v');if(u.pathname.startsWith('/embed/'))return u.pathname.split('/')[2];if(u.pathname.startsWith('/shorts/'))return u.pathname.split('/')[2];}}catch(e){}return null;}
+      async function loadVideos(){status.textContent='ویډیو درسونه بار کېږي…';const {data,error}=await client.from('lessons').select('id,title,description,video_url,pdf_url,created_at').order('created_at',{ascending:false});if(error){status.textContent='د ویډیوګانو د لوستلو ستونزه: '+error.message;return;}status.classList.add('hidden');const list=el('video-list');list.innerHTML='';el('video-empty').classList.toggle('hidden',!!(data&&data.length));for(const v of (data||[])){const id=youtubeId(v.video_url);const card=document.createElement('article');card.className='card span-6';card.innerHTML=`<h3 style="margin-top:0">${escVideo(v.title)}</h3><p class="muted small">${escVideo(v.description||'')}</p>${id?`<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-top:12px"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}" title="${escVideo(v.title)}" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`:`<p class="notice-box">دا لینک د پېژندل شوي YouTube ویډیو لینک په توګه ونه پېژندل شو.</p>`}${v.pdf_url?`<p style="margin-top:12px"><a class="btn btn-outline btn-small" href="${escVideo(v.pdf_url)}" target="_blank" rel="noopener noreferrer">📄 اړوند PDF خلاص کړه</a></p>`:''}`;list.appendChild(card);}}
+      async function refreshAuth(){const {data:{session}}=await client.auth.getSession();const logged=!!session;el('video-add-form').classList.toggle('hidden',!logged);el('video-logout').classList.toggle('hidden',!logged);el('video-admin-email').disabled=logged;el('video-admin-password').disabled=logged;el('video-login-form').querySelector('button[type="submit"]').classList.toggle('hidden',logged);adminStatus.className=logged?'success-box':'notice-box';adminStatus.textContent=logged?'مدیر حساب ته ننوتلی دی؛ اوس ویډیو درس اضافه کولی شې.':'د مدیر حساب ته ننوزه. که حساب نه لرې، لومړی یې په Supabase → Authentication → Users کې جوړ کړه.';}
+      el('video-login-form').addEventListener('submit',async e=>{e.preventDefault();adminStatus.className='notice-box';adminStatus.textContent='ننوتل…';const {error}=await client.auth.signInWithPassword({email:el('video-admin-email').value.trim(),password:el('video-admin-password').value});if(error){adminStatus.textContent='ننوتل ناکام شول: '+error.message;return;}await refreshAuth();});
+      el('video-logout').addEventListener('click',async()=>{await client.auth.signOut();await refreshAuth();});
+      el('video-add-form').addEventListener('submit',async e=>{e.preventDefault();const title=el('video-title').value.trim(),video_url=el('video-url').value.trim(),description=el('video-description').value.trim(),pdf_url=el('video-pdf').value.trim();if(!youtubeId(video_url)){adminStatus.className='notice-box';adminStatus.textContent='مهرباني وکړه د YouTube سم لینک ولیکه.';return;}adminStatus.className='notice-box';adminStatus.textContent='درس خوندي کېږي…';const {error}=await client.from('lessons').insert([{title,video_url,description,pdf_url}]);if(error){adminStatus.textContent='درس ونه خوندي شو: '+error.message+' — د RLS پالیسۍ او د مدیر ایمېل تنظیم وګوره.';return;}e.target.reset();adminStatus.className='success-box';adminStatus.textContent='ویډیو درس په بریالیتوب خپور شو؛ محصلین یې لیدلی شي.';await loadVideos();});
+      el('refresh-videos').addEventListener('click',loadVideos);
+      client.auth.onAuthStateChange(()=>{setTimeout(refreshAuth,0)});
+      await refreshAuth();await loadVideos();
+    })().catch(err=>{const s=document.getElementById('video-status');if(s)s.textContent='د ویډیو سیستم د پیل ستونزه: '+err.message;});
+  </script>
+
 </body>
 </html>
