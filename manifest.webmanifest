@@ -1,0 +1,14 @@
+{
+  "id": "./",
+  "name": "Networking Engineer - Paktia University",
+  "short_name": "شبکو انجینري",
+  "description": "د شبکو انجینري محصلینو لپاره درسي مهال‌وېش، کتابونه، PDF، ویډیوګانې او خبرتیاوې.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "ps-AF",
+  "dir": "rtl",
+  "background_color": "#FFFFFF",
+  "theme_color": "#123456"
+}
